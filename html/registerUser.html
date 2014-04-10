@@ -1,0 +1,35 @@
+<!--
+   registerUser.html
+   
+   This is the page that contains the form
+   of the view to the registration of a new user.  
+-->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+	<title>Register as a new user</title>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+	<meta name="generator" content="Geany 1.23.1" />
+</head>
+<body>
+	<form>
+		<table>
+			<tr><td><b>Personal data</b></td></tr>
+				<tr><td>Name: </td><td><input type="text" id="name" name="name" value=""/></td></tr>
+				<tr><td>Surnames: </td><td><input type="text" id="surnames" name="surnames" value=""/></td></tr>
+				<tr><td>E-mail: </td><td><input type="text" id="email" name="email" value=""/></td></tr>
+			<tr><td><b>User data</b></td></tr>
+				<tr><td>User name: </td><td><input type="text" id="user" name="user" value=""/></td></tr>
+				<tr><td>Password: </td><td><input type="text" id="password" name="password" value=""/></td></tr>
+				<tr><td>Confirmation: </td><td><input type="text" id="conf_password" name="conf_password" value=""/></td></tr>
+			<tr><td><input type="button" name="register" value="Register" onclick="window.close()"/></td></tr>
+		</table>
+		<br/>
+		<a href="">Return to login</a>	
+	</form>
+</body>
+
+</html>
