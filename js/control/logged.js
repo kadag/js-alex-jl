@@ -5,17 +5,53 @@ $( document ).ready(function() {
 
 function createEvents(){
 	$("#create").click(function (){
-		alert("create");
+		showDiv();
 			
 	});
 	$("#list").click(function (){
-		alert("list");
+		listRepositories();
 			
+	});
+
+	
+	$("#createRepository").click(function(){
+		var repo = $("#repository").val();
+		createRepo(repo);
 	});
 }
 
+function showDiv(){
+var divContent=$("#repositoryForm");
+divContent.show();
+}
 
+function createRepo(repoName){
+var outPutData = new Array();
+	
+	$.ajax({
+		  url: '../php/control/control.php',
+		  type: 'POST',
+		  async: false,
+		  data: 'action=10020&repositoryName=jose',
+		  dataType: "json",
+		  success: function (response) { 
+			  outPutData = response;
+		  },
+		  error: function (xhr, ajaxOptions, thrownError) {
+				alert(xhr.status+"\n"+thrownError);
+		  }	
+    }); 
+	
+	if(!outPutData[0]) {
+		alert("ok");
+	} else {
+		alert("no ok");	
+	}
+}
+function logout(){
 
+}
+/*
 function checkLogin(user, password){
 	
 	var outPutData = new Array();
@@ -39,4 +75,4 @@ function checkLogin(user, password){
 	} else {
 		alert("no ok");	
 	}
-}
+}*/

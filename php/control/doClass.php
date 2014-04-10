@@ -4,6 +4,7 @@
  * encapsula el control de l'aplicació
 */
 require_once "../model/users.php";
+require_once "../model/repositories.php";
 
 
 class doClass {
@@ -24,6 +25,16 @@ class doClass {
 			$errors[]="The user or password doesn't exist";
 			$error = true;
 		}
+		
+		 return json_encode($outPutData);
+	}
+	static public function createRepo($action,$repositoryName)
+	{
+		$outPutData = array();
+		$errors = array();
+		$error = false;	
+		$log = repositoriesClass::createRepo($repositoryName);
+		
 		
 		 return json_encode($outPutData);
 	}

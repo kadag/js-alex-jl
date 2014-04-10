@@ -36,7 +36,7 @@ class repositoriesClass {
     }
     
     public function getRepositoryName() {
-        return $this->name;
+        return $this->repositoryName;
     }
 
     public function setRepositoryName($repositoryName) {
@@ -60,7 +60,7 @@ class repositoriesClass {
     }
     
 	public function toString() {
-        return "project.usersClass[idRepository=" . $this->idRepository . "][repositoryName=" . $this->repositoryName . "][idUser=" . $this->idUser . "][idProject=" . $this->setIdProject. "]";
+        return "project.repositoriesClass[idRepository=" . $this->idRepository . "][repositoryName=" . $this->repositoryName . "][idUser=" . $this->idUser . "][idProject=" . $this->setIdProject. "]";
     }
 
 	public function getAll() {
@@ -87,11 +87,11 @@ class repositoriesClass {
 	 * @param id a buscar
 	 * @return objecte obtingut
 	 */
-	public static function createRepo( $user, $password ) {
-		//$cons = "select * from `".usersClass::$tableName."` where ".usersClass::$colUser." = '".$user."' AND ".usersClass::$colPassword." = '".$password."'";
+	public static function createRepo( $repositoryName ) {
+		$cons = "insert into `".repositoriesClass::$tableName."` (".repositoriesClass::$colName.") values  '".$repositoryName."'";
         //to do
         //hay que pasarle nombre del repositorio
-		return usersClass::findByQuery( $cons );
+		return repositoriesClass::findByQuery( $cons );
 	}
 
     /**
@@ -111,7 +111,7 @@ class repositoriesClass {
         //executar consulta
         $res = $conn->query($cons);
         //retornar resultat de la consulta
-        return usersClass::fromResultSetList( $res );
+        return repositoriesClass::fromResultSetList( $res );
     }
 
 /**
@@ -125,7 +125,7 @@ class repositoriesClass {
         $i=0;
         while ( ($row = $res->fetch_array(MYSQLI_BOTH)) != NULL ) {
                //recuperar valors dels camps i construir l'objecte
-                $entitat = usersClass::fromResultSet( $row );
+                $entitat = repositoriesClass::fromResultSet( $row );
                //afegir objecte a la col·lecció a retornar
                $entitatList[$i]= $entitat;
                $i++;
@@ -141,21 +141,17 @@ class repositoriesClass {
      */
     private static function fromResultSet( $res ) {
         //recuperar valors dels camps
-        $idRepository = $res[ usersClass::$colId];
-        $name = $res[ usersClass::$colName];
-        $surnames = $res[ usersClass::$colSurnames];
-        $email = $res[ usersClass::$colEmail];
-        $user = $res[ usersClass::$colUser];
-        $password = $res[ usersClass::$colPassword];
+        $idRepository = $res[ repositoriesClass::$colId];
+        $repositoryName = $res[ repositoriesClass::$colName];
+        $idUser = $res[ repositoriesClass::$colUser];
+        $idProject = $res[ repositoriesClass::$colProject];
 
             //construeix l'objecte
-        $entitat = new usersClass();
+        $entitat = new repositoriesClass();
         $entitat->setIdRepository($idRepository);
-        $entitat->setRepositoryName($name);
-        $entitat->setSurnames($surnames);
-        $entitat->setEmail($email);
-        $entitat->setIdUser($user);
-        $entitat->setIdProject($password);
+        $entitat->setRepositoryName($repositoryName);        
+        $entitat->setIdUser($idUser);
+        $entitat->setIdProject($idProject);
         //retornar objecte
         return $entitat;
     }
