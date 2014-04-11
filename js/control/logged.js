@@ -32,7 +32,7 @@ var outPutData = new Array();
 		  url: '../php/control/control.php',
 		  type: 'POST',
 		  async: false,
-		  data: 'action=10020&repositoryName=jose',
+		  data: 'action=10020&repositoryName='+repoName+'',
 		  dataType: "json",
 		  success: function (response) { 
 			  outPutData = response;

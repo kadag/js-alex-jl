@@ -39,6 +39,10 @@ class controlClass {
 			case '10000':
 				echo doClass::login($this->params['action'], $this->params['user'],$this->params['password']);
 				break;
+			case '10010':
+				echo doClass::registerUser($this->params['action'], $this->params['name'],$this->params['surnames'],$this->params['email'],$this->params['user'],$this->params['password']);
+				break;
+		   
 			case '10020':
 				echo doClass::createRepo($this->params['action'], $this->params['repositoryName']);
 				break;

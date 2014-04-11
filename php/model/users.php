@@ -182,6 +182,31 @@ class usersClass {
         //retornar objecte
         return $entitat;
     }
+        /**
+     * registerUser()
+     * executa la inserció del nou usuari.
+     * @param nom, cognoms, correu, usuari, contrasenya
+     * @return objecte usuari obtingut
+     */
+    public static function registerUser() {
+        
+        //connectar amb la base de dades
+        $conn = new BDproject();
+        if (mysqli_connect_errno()) {
+            printf("Error en connexió amb la base de dades: %s\n", mysqli_connect_error());
+            exit();
+        }
+        //preparar sentencia inserció
+        $stmt = $conn->stmt_init();
+        
+        if ($stmt->prepare("insert into ".usersClass::$tableName." values (?,?,?,?,?)")){
+            $stmt->bind_param("is", $this->getName(), $this->getSurnames(), $this->getEmail(), $this->getUser(), $this->getPassword());
+            //executar consulta
+            $stmt->execute();
+        }
+        if ( $conn != null ) $conn->close();
+    }
+
 }	
 ?>
 
